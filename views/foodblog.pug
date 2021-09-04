@@ -1,15 +1,11 @@
-extends layout
-
-block content
-    include ./header.pug
-    main
-        aside#photos
-        img(src='images/chili.jpg' alt='White Chicken Chili' width='180')
-        h2
-        blogtitle
-        section#blogposts
-        ul
-            li#posts(v-for='post in posts')
+main
+  aside#photos
+    img(src='images/chili.jpg' alt='White Chicken Chili' width='180')
+  h2
+    blogtitle
+  section#blogposts
+      ul
+        li#posts(v-for='post in posts')
             span.profile
                 img(v-bind:src='post.profilepic' v-on:click='authorinfo(posts, post)')
             span.author {{ post.name }}
@@ -18,7 +14,7 @@ block content
             span.reply {{ post.reply }}
             p
                 | {{ post.message }}
-            #info_box(v-for='post in posts' v-if='post.thisBox')
+        #info_box(v-for='post in posts' v-if='post.thisBox')
             p.closeBtn.closeBtnP(v-on:click="$emit('close', post.thisBox = false)") &#x2716;
             #info_title {{ post.name }}
             #info_foodie
@@ -28,8 +24,6 @@ block content
                 span
                 | Bio:
                 br
-                | {{ post.bio }}
+            | {{ post.bio }}
             button.closeBtn.closeBtnB(v-on:click="$emit('close', post.thisBox = false)") Close
             p#close_info
-    include ./footer.pug
-    script(src='js/vue.js')
